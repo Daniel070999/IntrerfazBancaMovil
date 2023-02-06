@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
                       'Cuenta de ahorros',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 18,
+                        fontSize: 16,
                       ),
                     ),
                   ),
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                               'Daniel Alexander Patiño Vásquez',
                               style: TextStyle(
                                 color: Colors.blue,
-                                fontSize: 18,
+                                fontSize: 14,
                               ),
                             ),
                             Text(
@@ -130,84 +130,154 @@ class _HomeState extends State<Home> {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 3,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: PhysicalModel(
-                color: Colors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(25.0),
-                elevation: 10,
-                child: Card(
-                  color: Colors.white.withOpacity(0.8),
-                  shadowColor: Colors.grey,
-                  elevation: 10.0,
-                  child: Column(
-                    children: [
-                      Text('Datos'),
-                    ],
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0)),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 4,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: PhysicalModel(
-                color: Colors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(25.0),
-                elevation: 10,
-                child: Card(
-                  color: Colors.white.withOpacity(0.8),
-                  shadowColor: Colors.grey,
-                  elevation: 10.0,
-                  child: Column(
-                    children: [
-                      Text('Datos'),
-                    ],
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0)),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 3,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: PhysicalModel(
-                color: Colors.grey.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(25.0),
-                elevation: 10,
-                child: Card(
-                  color: Colors.white.withOpacity(0.8),
-                  shadowColor: Colors.grey,
-                  elevation: 10.0,
-                  child: Column(
-                    children: [
-                      Text('Datos'),
-                    ],
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0)),
-                ),
-              ),
-            ),
-          ),
+          resumenGrafico(),
+          movimientos(),
+          herramientas(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: Icon(Icons.refresh),
         tooltip: 'Recargar',
+      ),
+    );
+  }
+}
+
+class herramientas extends StatelessWidget {
+  const herramientas({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 3,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: PhysicalModel(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(25.0),
+          elevation: 10,
+          child: Card(
+            color: Colors.white.withOpacity(0.8),
+            shadowColor: Colors.grey,
+            elevation: 10.0,
+            child: Column(
+              children: [
+                Text('Datos'),
+              ],
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class movimientos extends StatelessWidget {
+  const movimientos({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 4,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: PhysicalModel(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(25.0),
+          elevation: 10,
+          child: Card(
+            color: Colors.white.withOpacity(0.8),
+            shadowColor: Colors.grey,
+            elevation: 10.0,
+            child: Column(
+              children: [
+                Text('Movimientos'),
+                Expanded(
+                  child: ListView(
+                    children: [
+                      DataTable(
+                        sortColumnIndex: 3,
+                        sortAscending: false,
+                        columns: [
+                          DataColumn(label: Text("Nombre")),
+                          DataColumn(label: Text("Apellido")),
+                          DataColumn(label: Text("Años"), numeric: true),
+                          DataColumn(label: Text("Direccion")),
+                        ],
+                        
+                        rows: [
+                          DataRow( cells: [
+                            DataCell(Text("Andres")),
+                            DataCell(Text("Cruz")),
+                            DataCell(Text("28")),
+                            DataCell(Text("loja")),
+                          ]),
+                          DataRow(cells: [
+                            DataCell(Text("Ramos")),
+                            DataCell(Text("Ayu")),
+                            DataCell(Text("999")),
+                            DataCell(Text("cuenca")),
+                          ]),
+                          DataRow(cells: [
+                            DataCell(Text("Ramos")),
+                            DataCell(Text("Ayu")),
+                            DataCell(Text("999")),
+                            DataCell(Text("cuenca")),
+                          ])
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class resumenGrafico extends StatelessWidget {
+  const resumenGrafico({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height / 3,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: PhysicalModel(
+          color: Colors.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(25.0),
+          elevation: 10,
+          child: Card(
+            color: Colors.white.withOpacity(0.8),
+            shadowColor: Colors.grey,
+            elevation: 10.0,
+            child: Column(
+              children: [
+                Text('Resumen Gráfico'),
+              ],
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25.0)),
+          ),
+        ),
       ),
     );
   }
